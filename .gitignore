@@ -1,0 +1,13 @@
+.idea/*
+target/
+*.iml
+*.log
+build/*
+*/build/*
+.gradle/*
+*/.gradle/*
+.DS_Store
+/data
+/ext
+/main.dSYM
+/build
