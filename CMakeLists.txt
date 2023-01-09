@@ -6,6 +6,7 @@ project(c2p LANGUAGES CXX VERSION 0.1.0)
 
 # 指定源文件
 file(GLOB SOURCES_AND_HEADERS "*.cpp" "include/*.h")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 add_executable(c2p ${SOURCES_AND_HEADERS})
 
@@ -24,7 +25,7 @@ FetchContent_Declare(
 set(CLIP_EXAMPLES off)
 set(CLIP_TESTS off)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wc++11-extensions")
-message("CMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}")
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/ext/clip")
 
 FetchContent_MakeAvailable(clip)
 

@@ -5,6 +5,8 @@ namespace po = boost::program_options;
 #include <iostream>
 #include "ext/clip/clip.h"
 #include <iterator>
+#include "c2p.h"
+
 using namespace std;
 
 // A helper function to simplify the main part.
@@ -71,12 +73,32 @@ int main(int ac, char ** av)
         cout << "Optimization level is " << opt << "\n";
 
         cout << "Listen port is " << portnum << "\n";
+
+        // if (vm.count("preview")) {
+        //     if (vm.count("file") == 0) {
+        //         cout<<"please specify file"<<endl;
+        //         return 0;
+        //     }
+
+        // }
+
+        if (vm.count("file")) {
+            C2P c2p(vm["file"].as<string>());
+            c2p.copy2Paster();
+        }
+
+        if (vm.count("show")) {
+            const string result = C2P::readPaster();
+            cout<<result<<endl;
+        }
+        
     }
     catch(std::exception& e)
     {
         cout << e.what() << "\n";
         return 1;
     }
+
     return 0;
     // std::cout << "Hello, world!\n";
     // clip::format my_format =
