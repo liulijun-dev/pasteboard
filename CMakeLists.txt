@@ -28,6 +28,13 @@ message("CMAKE_CXX_FLAGS=${CMAKE_CXX_FLAGS}")
 
 FetchContent_MakeAvailable(clip)
 
+# need to install boost in local before find boost
+FIND_PACKAGE(Boost 1.80.0 REQUIRED COMPONENTS program_options)
+IF (Boost_program_options_FOUND)
+  include_directories( ${Boost_INCLUDE_DIR} )
+  target_link_libraries(c2p LINK_PUBLIC ${Boost_LIBRARIES} )
+endif()
+
 target_link_libraries(c2p PRIVATE clip)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
