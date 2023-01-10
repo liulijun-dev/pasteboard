@@ -1,14 +1,14 @@
 cmake_minimum_required(VERSION 3.0.0)
-project(c2p LANGUAGES CXX VERSION 0.1.0)
+project(pasteboard LANGUAGES CXX VERSION 0.1.0)
 
 #include(CTest)
 #enable_testing()
 
 # 指定源文件
-file(GLOB SOURCES_AND_HEADERS "*.cpp" "include/*.h")
+file(GLOB SOURCES_AND_HEADERS "*.cpp")
 include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-add_executable(c2p ${SOURCES_AND_HEADERS})
+add_executable(pb ${SOURCES_AND_HEADERS})
 
 # 引入clip库
 include(FetchContent)
@@ -31,12 +31,13 @@ FetchContent_MakeAvailable(clip)
 
 # need to install boost in local before find boost
 FIND_PACKAGE(Boost 1.80.0 REQUIRED COMPONENTS program_options)
+
 IF (Boost_program_options_FOUND)
   include_directories( ${Boost_INCLUDE_DIR} )
-  target_link_libraries(c2p LINK_PUBLIC ${Boost_LIBRARIES} )
+  target_link_libraries(pb LINK_PUBLIC ${Boost_LIBRARIES} )
 endif()
 
-target_link_libraries(c2p PRIVATE clip)
+target_link_libraries(pb PRIVATE clip)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
