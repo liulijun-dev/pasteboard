@@ -10,18 +10,16 @@ using namespace std;
 class Pasteboard
 {
 public:
-    explicit Pasteboard(const string &file) : file(file)
-    {
-    }
+    const string readPasteboard();
 
-    static const string readPasteboard();
+    bool copy2Pasteboard(const string &file);
 
-    bool copy2Pasteboard();
+    void preview(const string &file);
+
+    void copy2Output(const string &file);
 
 private:
-    string file;
-
-    const boost::optional<string> readFileContent();
+    const boost::optional<string> readFileContent(const string &file);
 };
 
 #endif

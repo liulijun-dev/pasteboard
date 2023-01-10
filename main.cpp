@@ -4,7 +4,6 @@ namespace po = boost::program_options;
 
 #include <iostream>
 #include <iterator>
-#include "clip.h"
 #include "pasteboard.h"
 
 using namespace std;
@@ -29,16 +28,6 @@ int main(int ac, char ** av)
             ("show,s", "show paster content")
             ("file,f", po::value<string>(), "input file")
             ("output,o", po::value<string>(), "output file")
-            // ("optimization", po::value<int>(&opt)->default_value(10),
-            //       "optimization level")
-            // ("verbose,v", po::value<int>()->implicit_value(1),
-            //       "enable verbosity (optionally specify level)")
-            // ("listen,l", po::value<int>(&portnum)->implicit_value(1001)
-            //       ->default_value(0,"no"),
-            //       "listen on a port.")
-            // ("include-path,I", po::value< vector<string> >(),
-            //       "include path")
-            // ("input-file", po::value< vector<string> >(), "input file")
         ;
 
         po::positional_options_description positionalOptionsDesc;
@@ -49,48 +38,32 @@ int main(int ac, char ** av)
         po::notify(vm);
 
         if (vm.count("help")) {
-            cout << "Usage: c2p [ps] [-f] file\n";
+            cout << "Usage: pb [options] [-f] file\n";
             cout << optionsDesc;
             return 0;
         }
 
-        if (vm.count("include-path"))
-        {
-            cout << "Include paths are: "
-                 << vm["include-path"].as< vector<string> >() << "\n";
+        Pasteboard pasteboard;
+        if (vm.count("preview")) {
+            if (vm.count("file") == 0) {
+                cout<<"please specify file"<<endl;
+                return 0;
+            }
+            pasteboard.preview(vm["file"].as<string>());
+            return 1;
         }
-
-        if (vm.count("input-file"))
-        {
-            cout << "Input files are: "
-                 << vm["input-file"].as< vector<string> >() << "\n";
-        }
-
-        if (vm.count("verbose")) {
-            cout << "Verbosity enabled.  Level is " << vm["verbose"].as<int>()
-                 << "\n";
-        }
-
-        cout << "Optimization level is " << opt << "\n";
-
-        cout << "Listen port is " << portnum << "\n";
-
-        // if (vm.count("preview")) {
-        //     if (vm.count("file") == 0) {
-        //         cout<<"please specify file"<<endl;
-        //         return 0;
-        //     }
-
-        // }
 
         if (vm.count("file")) {
-            Pasteboard pasteboard(vm["file"].as<string>());
-            pasteboard.copy2Pasteboard();
+            pasteboard.copy2Pasteboard(vm["file"].as<string>());
         }
 
         if (vm.count("show")) {
-            const string result = Pasteboard::readPasteboard();
+            const string result = pasteboard.readPasteboard();
             cout<<result<<endl;
+        }
+
+        if (vm.count("output")) {
+            pasteboard.copy2Output(vm["output"].as<string>());
         }
         
     }
@@ -101,15 +74,4 @@ int main(int ac, char ** av)
     }
 
     return 0;
-    // std::cout << "Hello, world!\n";
-    // clip::format my_format =
-    //     clip::register_format("com.appname.FormatName");
-
-    // int value = 32;
-    // clip::set_text("Hello World112\n haha");
-
-    // clip::lock l;
-    // l.clear();
-    // l.set_data(clip::text_format(), "Alternative text for value 32");
-    // l.set_data(my_format, &value, sizeof(int));
 }
