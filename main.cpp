@@ -3,9 +3,9 @@
 namespace po = boost::program_options;
 
 #include <iostream>
-#include "ext/clip/clip.h"
 #include <iterator>
-#include "c2p.h"
+#include "clip.h"
+#include "pasteboard.h"
 
 using namespace std;
 
@@ -28,6 +28,7 @@ int main(int ac, char ** av)
             ("preview,p", "preview copy to paster content")
             ("show,s", "show paster content")
             ("file,f", po::value<string>(), "input file")
+            ("output,o", po::value<string>(), "output file")
             // ("optimization", po::value<int>(&opt)->default_value(10),
             //       "optimization level")
             // ("verbose,v", po::value<int>()->implicit_value(1),
@@ -83,12 +84,12 @@ int main(int ac, char ** av)
         // }
 
         if (vm.count("file")) {
-            C2P c2p(vm["file"].as<string>());
-            c2p.copy2Paster();
+            Pasteboard pasteboard(vm["file"].as<string>());
+            pasteboard.copy2Pasteboard();
         }
 
         if (vm.count("show")) {
-            const string result = C2P::readPaster();
+            const string result = Pasteboard::readPasteboard();
             cout<<result<<endl;
         }
         

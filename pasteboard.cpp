@@ -3,12 +3,12 @@
 #include <string>
 #include <boost/optional.hpp>
 
-#include "c2p.h"
+#include "pasteboard.h"
 #include "clip.h"
 
 using namespace std;
 
-const boost::optional<string> C2P::readContent()
+const boost::optional<string> Pasteboard::readFileContent()
 {
     string result;
     string line;
@@ -28,9 +28,9 @@ const boost::optional<string> C2P::readContent()
     }
 }
 
-bool C2P::copy2Paster()
+bool Pasteboard::copy2Pasteboard()
 {
-    boost::optional<string> fileContent = readContent();
+    boost::optional<string> fileContent = readFileContent();
     if (fileContent == boost::none)
     {
         cout << "read file content error: file not exist or cannot open" << endl;
@@ -40,7 +40,7 @@ bool C2P::copy2Paster()
     return true;
 }
 
-const string C2P::readPaster() {
+const string Pasteboard::readPasteboard() {
     string result;
     clip::get_text(result);
     return result;
