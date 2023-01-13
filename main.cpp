@@ -6,7 +6,6 @@ namespace po = boost::program_options;
 #include <iterator>
 #include "pasteboard.h"
 #include "console_color.h"
-#include "messages.cpp"
 
 using namespace std;
 

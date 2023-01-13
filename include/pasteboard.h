@@ -1,9 +1,11 @@
-#ifndef C2P_H_INCLUDED
-#define C2P_H_INCLUDED
+#ifndef PASTEBOARD_H_INCLUDED
+#define PASTEBOARD_H_INCLUDED
 #pragma once
 
 #include <string>
 #include <boost/operators.hpp>
+#include <string_view>
+#include <boost/optional.hpp>
 
 using namespace std;
 
@@ -23,5 +25,8 @@ public:
 private:
     const boost::optional<string> readFileContent(const string &file);
 };
+
+extern string_view must_set_file;
+extern string_view unknown_error;
 
 #endif

@@ -1,3 +1,7 @@
+#ifndef CONSOLE_COLOR_H_INCLUDED
+#define CONSOLE_COLOR_H_INCLUDED
+#pragma once
+
 #include <array>
 #include <string_view>
 
@@ -33,3 +37,5 @@ std::string ConsoleColor::replaceColors(const std::string_view &str)
     }
     return temp;
 }
+
+#endif
