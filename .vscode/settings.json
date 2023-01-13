@@ -63,6 +63,19 @@
         "vector": "cpp",
         "list": "cpp",
         "map": "cpp",
-        "fstream": "cpp"
+        "fstream": "cpp",
+        "__tree": "cpp",
+        "condition_variable": "cpp",
+        "deque": "cpp",
+        "iomanip": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "set": "cpp",
+        "stack": "cpp",
+        "strstream": "cpp",
+        "thread": "cpp",
+        "typeindex": "cpp",
+        "variant": "cpp",
+        "filesystem": "cpp"
     }
 }

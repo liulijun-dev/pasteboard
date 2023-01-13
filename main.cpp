@@ -5,6 +5,8 @@ namespace po = boost::program_options;
 #include <iostream>
 #include <iterator>
 #include "pasteboard.h"
+#include "console_color.h"
+#include "messages.cpp"
 
 using namespace std;
 
@@ -45,8 +47,8 @@ int main(int ac, char ** av)
 
         if (vm.count("preview")) {
             if (vm.count("file") == 0) {
-                cout<<"please specify file"<<endl;
-                return 0;
+                printf("%s\n", ConsoleColor::replaceColors(must_set_file).data());
+                return -1;
             }
             pasteboard.preview(vm["file"].as<string>());
             return 1;
@@ -68,8 +70,8 @@ int main(int ac, char ** av)
     }
     catch(std::exception& e)
     {
-        cout << e.what() << "\n";
-        return 1;
+        printf(ConsoleColor::replaceColors(unknown_error).data(), e.what());
+        return -1;
     }
 
     return 0;
