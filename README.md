@@ -38,6 +38,11 @@ pb -o target.md #直接拷贝粘贴板内容到target.md
 pb -o target.md README.md #将README.md的内容拷贝到粘贴板后，再将粘贴板的内容输出到target.md
 ```
 
+- 清空粘贴板
+```shell
+pb -c
+```
+
 <br>
 
 # 参考资料
