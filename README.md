@@ -45,6 +45,17 @@ pb -c
 
 <br>
 
+# 如何编译
+- 安装cmake，版本3.0.0及其以上;
+- 安装Boost，版本1.80.0
+- 切换到代码根目录，编译代码
+```shell
+cmake --no-warn-unused-cli -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_BUILD_TYPE:STRING=MinSizeRel -DCMAKE_C_COMPILER:FILEPATH=/usr/bin/clang -DCMAKE_CXX_COMPILER:FILEPATH=/usr/bin/clang++ -S. -B./build -G "Unix Makefiles" && \
+cmake --build ./build --config MinSizeRel --target pb
+```
+编译出的命令位于`代码根目录/build`内，文件名为pb.
+
 # 参考资料
-[Get started with CMake Tools on Linux](https://code.visualstudio.com/docs/cpp/cmake-linux#:~:text=Get%20started%20with%20CMake%20Tools%20on%20Linux%20CMake,tool%20files%20specific%20to%20your%20compiler%20and%20platform.)
-[Boost Source Code](https://github.com/boostorg/boost)
+[Get started with CMake Tools on Linux](https://code.visualstudio.com/docs/cpp/cmake-linux#:~:text=Get%20started%20with%20CMake%20Tools%20on%20Linux%20CMake,tool%20files%20specific%20to%20your%20compiler%20and%20platform.) <br>
+[Boost Source Code](https://github.com/boostorg/boost)<br>
+[cmake](https://cmake.org/cmake/help/latest/manual/cmake.1.html#)
