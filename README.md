@@ -4,16 +4,18 @@ pb的功能包括：
 - 预览复制的内容
 - 输出粘贴板中的内容
 - 将粘贴板的内容输出到目标文件
+- 清空粘贴板
 
 使用方法：<br>
 
 Usage: pb [options] [-f] file <br>
 Allowed options: <br>
-  -h [ --help ]         show help message <br>
-  -p [ --preview ]      preview copy to paster content <br>
-  -s [ --show ]         show paster content <br>
-  -f [ --file ] arg     input file <br>
-  -o [ --output ] arg   output file <br>
+  -h [  --help    ]         show help message <br>
+  -p [  --preview ]         preview copy to paster content <br>
+  -s [  --show    ]         show paster content <br>
+  -c [  --clear   ]         clear pasteboard content, donot execute any other options if you specified them <br>
+  -f [  --file    ] arg     input file <br>
+  -o [  --output  ] arg     output file <br>
 
 使用示例：
 - 将文件拷贝到粘贴板
