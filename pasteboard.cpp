@@ -78,3 +78,7 @@ void Pasteboard::copy2Output(const string &file)
         cout << "output to pasteboard content error: file not exist or cannot open";
     }
 }
+
+void Pasteboard::clear() {
+    clip::clear();
+}

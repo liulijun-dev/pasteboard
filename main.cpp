@@ -8,14 +8,6 @@ namespace po = boost::program_options;
 
 using namespace std;
 
-// A helper function to simplify the main part.
-template<class T>
-ostream& operator<<(ostream& os, const vector<T>& v)
-{
-    copy(v.begin(), v.end(), ostream_iterator<T>(os, " "));
-    return os;
-}
-
 int main(int ac, char ** av)
 {
     try {
@@ -26,6 +18,7 @@ int main(int ac, char ** av)
             ("help,h", "show help message")
             ("preview,p", "preview copy to paster content")
             ("show,s", "show paster content")
+            ("clear,c", "clear pasteboard content, donot execute any other options if you specified them")
             ("file,f", po::value<string>(), "input file")
             ("output,o", po::value<string>(), "output file")
         ;
@@ -44,6 +37,12 @@ int main(int ac, char ** av)
         }
 
         Pasteboard pasteboard;
+
+        if (vm.count("clear")) {
+            pasteboard.clear();
+            return 0;
+        }
+
         if (vm.count("preview")) {
             if (vm.count("file") == 0) {
                 cout<<"please specify file"<<endl;

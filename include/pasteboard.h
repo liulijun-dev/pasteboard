@@ -18,6 +18,8 @@ public:
 
     void copy2Output(const string &file);
 
+    void clear();
+
 private:
     const boost::optional<string> readFileContent(const string &file);
 };
